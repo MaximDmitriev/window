@@ -97,12 +97,10 @@ textarea:focus {
   font-style: normal;
   border: 1px solid #ffc600;
   border-radius: 1rem;
-  background: -webkit-linear-gradient(-90deg, #ffed26 0%, #ffb400 100%);
-  background: -moz-linear-gradient(-90deg, #ffed26 0%, #ffb400 100%);
-  background: -o-linear-gradient(-90deg, #ffed26 0%, #ffb400 100%);
-  background: -ms-linear-gradient(-90deg, #ffed26 0%, #ffb400 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffed26), to(#ffb400));
   background: linear-gradient(180deg, #ffed26 0%, #ffb400 100%);
-  box-shadow: 1px 2px 20px 0px rgba(255, 153, 0, 0.4);
+  -webkit-box-shadow: 1px 2px 20px 0px rgba(255, 153, 0, 0.4);
+          box-shadow: 1px 2px 20px 0px rgba(255, 153, 0, 0.4);
 }
 .button:hover {
   cursor: pointer;
@@ -123,7 +121,8 @@ textarea:focus {
 .section_header_sub {
   margin-top: 2rem;
   margin-left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 17rem;
   height: 0.2rem;
   background: url(../img/glazing/line.png) 0 0 no-repeat;
@@ -131,7 +130,8 @@ textarea:focus {
 .arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   z-index: 99;
   width: 2rem;
   height: 2rem;
@@ -333,10 +333,7 @@ textarea:focus {
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   border-top: 0.5rem solid #0089cd;
-  background: -webkit-linear-gradient(-90deg, #c7dce9 0%, #c7dce9 0%, rgba(255, 255, 255, 0) 100%);
-  background: -moz-linear-gradient(-90deg, #c7dce9 0%, #c7dce9 0%, rgba(255, 255, 255, 0) 100%);
-  background: -o-linear-gradient(-90deg, #c7dce9 0%, #c7dce9 0%, rgba(255, 255, 255, 0) 100%);
-  background: -ms-linear-gradient(-90deg, #c7dce9 0%, #c7dce9 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#c7dce9), color-stop(0%, #c7dce9), to(rgba(255, 255, 255, 0)));
   background: linear-gradient(180deg, #c7dce9 0%, #c7dce9 0%, rgba(255, 255, 255, 0) 100%);
 }
 .glazing_cold h3 {
@@ -355,10 +352,7 @@ textarea:focus {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
   border-top: 0.5rem solid #ffb903;
-  background: -webkit-linear-gradient(-90deg, #f7eac9 0%, #f7eac9 0%, rgba(255, 255, 255, 0) 100%);
-  background: -moz-linear-gradient(-90deg, #f7eac9 0%, #f7eac9 0%, rgba(255, 255, 255, 0) 100%);
-  background: -o-linear-gradient(-90deg, #f7eac9 0%, #f7eac9 0%, rgba(255, 255, 255, 0) 100%);
-  background: -ms-linear-gradient(-90deg, #f7eac9 0%, #f7eac9 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#f7eac9), color-stop(0%, #f7eac9), to(rgba(255, 255, 255, 0)));
   background: linear-gradient(180deg, #f7eac9 0%, #f7eac9 0%, rgba(255, 255, 255, 0) 100%);
 }
 .glazing_warm h3 {
@@ -440,6 +434,7 @@ textarea:focus {
 }
 .decoration_item {
   text-align: center;
+  outline: 0;
 }
 .decoration_item a {
   font-size: 2rem;
@@ -474,10 +469,7 @@ textarea:focus {
   border-top: 1rem solid #0089cd;
   height: 8rem;
   padding: 2rem 0;
-  background: -webkit-linear-gradient(-90deg, #ebebeb 0%, #ebebeb 0%, rgba(255, 255, 255, 0) 100%);
-  background: -moz-linear-gradient(-90deg, #ebebeb 0%, #ebebeb 0%, rgba(255, 255, 255, 0) 100%);
-  background: -o-linear-gradient(-90deg, #ebebeb 0%, #ebebeb 0%, rgba(255, 255, 255, 0) 100%);
-  background: -ms-linear-gradient(-90deg, #ebebeb 0%, #ebebeb 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), color-stop(0%, #ebebeb), to(rgba(255, 255, 255, 0)));
   background: linear-gradient(180deg, #ebebeb 0%, #ebebeb 0%, rgba(255, 255, 255, 0) 100%);
 }
 .decoration_content {
@@ -524,9 +516,11 @@ textarea:focus {
   top: 0;
   left: 0;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   top: 40%;
   opacity: 0;
+  -webkit-transition: ease 0.2s;
   transition: ease 0.2s;
 }
 .works a[data-fancybox="gallery"]:hover .lupa {
@@ -555,7 +549,8 @@ textarea:focus {
   min-height: 7rem;
 }
 .guarantees_block:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 /*Payment*/
 .payment {
@@ -698,7 +693,8 @@ textarea:focus {
   position: fixed;
   top: 10%;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 40rem;
   background-color: #ffffff;
 }
@@ -727,7 +723,8 @@ textarea:focus {
   position: fixed;
   top: 10%;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 40rem;
   padding: 1rem 0.5rem 4rem;
   background-color: #ffffff;
@@ -796,7 +793,8 @@ textarea:focus {
   position: fixed;
   top: 10%;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 40rem;
   padding: 1rem 5rem 4rem;
   background-color: #ffffff;
@@ -862,7 +860,8 @@ textarea:focus {
 .popup_calc_profile_content img {
   display: block;
   margin-left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 .popup_calc_profile_close {
   position: absolute;
@@ -876,7 +875,8 @@ textarea:focus {
 .popup_calc_profile_button {
   display: block;
   margin-left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   margin-top: 1rem;
   padding: 1rem 5rem;
 }
@@ -1459,22 +1459,13 @@ textarea:focus {
 @media only screen and (max-width: 768px) {
   .animated {
     /*css transitions*/
-    -o-transition-property: none !important;
-    -moz-transition-property: none !important;
-    -ms-transition-property: none !important;
     -webkit-transition-property: none !important;
     transition-property: none !important;
     /*css transforms*/
-    -o-transform: none !important;
-    -moz-transform: none !important;
-    -ms-transform: none !important;
     -webkit-transform: none !important;
     transform: none !important;
     /*css animations*/
     -webkit-animation: none !important;
-    -moz-animation: none !important;
-    -o-animation: none !important;
-    -ms-animation: none !important;
     animation: none !important;
   }
 }

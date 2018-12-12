@@ -46,19 +46,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function hideGlazing(count){
         for(let i = count; i < glazingTabContent.length; i++){
+            // glazingTabContent[count].classList.remove("fadeIn");
+            // glazingTabContent[count].classList.add("fadeOut");
             glazingTabContent[i].style.display = "none";
             glazingLink[i].classList.remove("active");
         }
     }
 
     function showGlazing(count){
+        // glazingTabContent[count].classList.remove("fadeOut");
+        // glazingTabContent[count].classList.add("fadeIn");
         glazingTabContent[count].style.display = "block";
         glazingLink[count].classList.add("active");
     }
 
     hideGlazing(1);
-
-    console.log(glazingLink);
 
     glazingTabName.forEach((item, i) =>{
         item.addEventListener('click', () =>{
@@ -67,5 +69,38 @@ window.addEventListener('DOMContentLoaded', () => {
 
         });
     });
+
+
+    let decoration = document.querySelector(".decoration"),
+        decorationTabContent = decoration.querySelectorAll(".decoration_content>.row>div"),
+        decorationTabName = decoration.querySelectorAll(".decoration_item"),
+        decorationLink = decoration.querySelectorAll("a");
+
+        console.log(decorationTabContent);
+        console.log(decorationTabName);
+        console.log(decorationLink);
+        
+        function hideDecoration(count){
+            for(let i = count; i < decorationTabContent.length; i++){
+                decorationTabContent[i].style.display = "none";
+                // decorationLink[i].classList.remove(":focus");
+                decorationTabName[i].querySelector("div").classList.remove("after_click");
+            }
+        }
+    
+        function showDecoration(count){
+            decorationTabContent[count].style.display = "block";
+            // decorationLink[count].classList.add(":focus");
+            decorationTabName[count].querySelector("div").classList.add("after_click");
+        }
+
+
+        decorationLink.forEach((item, i) =>{
+            item.addEventListener('click', () =>{
+                hideDecoration(0);
+                showDecoration(i);
+    
+            });
+        });
 
 });
