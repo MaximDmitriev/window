@@ -39,4 +39,33 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // tabs
 
+    let glazing = document.querySelector(".glazing"),
+        glazingTabName = glazing.querySelectorAll(".glazing_block"),
+        glazingLink = glazing.querySelectorAll("a"),
+        glazingTabContent = glazing.querySelectorAll(".row");
+
+    function hideGlazing(count){
+        for(let i = count; i < glazingTabContent.length; i++){
+            glazingTabContent[i].style.display = "none";
+            glazingLink[i].classList.remove("active");
+        }
+    }
+
+    function showGlazing(count){
+        glazingTabContent[count].style.display = "block";
+        glazingLink[count].classList.add("active");
+    }
+
+    hideGlazing(1);
+
+    console.log(glazingLink);
+
+    glazingTabName.forEach((item, i) =>{
+        item.addEventListener('click', () =>{
+            hideGlazing(0);
+            showGlazing(i);
+
+        });
+    });
+
 });
