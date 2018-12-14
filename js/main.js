@@ -69,16 +69,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function hideGlazing(count){
         for(let i = count; i < glazingTabContent.length; i++){
-            // glazingTabContent[count].classList.remove("fadeIn");
-            // glazingTabContent[count].classList.add("fadeOut");
             glazingTabContent[i].style.display = "none";
             glazingLink[i].classList.remove("active");
         }
     }
 
     function showGlazing(count){
-        // glazingTabContent[count].classList.remove("fadeOut");
-        // glazingTabContent[count].classList.add("fadeIn");
         glazingTabContent[count].style.display = "block";
         glazingLink[count].classList.add("active");
     }
@@ -99,30 +95,23 @@ window.addEventListener('DOMContentLoaded', () => {
         decorationTabName = decoration.querySelectorAll(".decoration_item"),
         decorationLink = decoration.querySelectorAll("a");
 
-        // console.log(decorationTabContent);
-        // console.log(decorationTabName);
-        // console.log(decorationLink);
         
         function hideDecoration(count){
             for(let i = count; i < decorationTabContent.length; i++){
                 decorationTabContent[i].style.display = "none";
-                // decorationLink[i].classList.remove(":focus");
                 decorationTabName[i].querySelector("div").classList.remove("after_click");
             }
         }
     
         function showDecoration(count){
             decorationTabContent[count].style.display = "block";
-            // decorationLink[count].classList.add(":focus");
             decorationTabName[count].querySelector("div").classList.add("after_click");
         }
-
 
         decorationLink.forEach((item, i) =>{
             item.addEventListener('click', () =>{
                 hideDecoration(0);
                 showDecoration(i);
-    
             });
         });
 
@@ -175,47 +164,82 @@ window.addEventListener('DOMContentLoaded', () => {
         calcEnd = document.querySelector(".popup_calc_end"),
         btnCalcClose = [document.querySelector(".popup_calc_end_close"), 
                         document.querySelector(".popup_calc_close"),
-                        document.querySelector(".popup_calc_profile_close")];
+                        document.querySelector(".popup_calc_profile_close")],
+        typeWindow = calc.querySelectorAll("a"),
+        bigImgType = document.querySelectorAll(".big_img>img");
     
-        btnCalc.forEach((item) => {
-            item.addEventListener('click', () => {
-                calc.classList.add("fadeIn");
-                calc.style.display = "block";
+    // console.log(bigImgType);
+
+
+    btnCalc.forEach((item) => {
+        item.addEventListener('click', () => {
+            calc.classList.add("fadeIn");
+            calc.style.display = "block";
+        });
+    });
+    calcBtn.addEventListener('click', () => {
+        calc.style.display = "none";
+        calcProfile.classList.add("fadeIn");
+        calcProfile.style.display = "block";
+    });
+
+    calcProfileBtn.addEventListener('click', () => {
+        calcProfile.style.display = "none";
+        calcEnd.classList.add("fadeIn");
+        calcEnd.style.display = "block";
+    });
+
+    let calcModal = [calc, calcProfile, calcEnd];
+
+    calcModal.forEach((item) => {
+        item.classList.add("animated");
+    });
+
+    btnCalcClose.forEach((item) => {
+        item.addEventListener('click', () =>{
+            calcModal.forEach((item) => {
+                if(item.style.display == "block") {
+                    item.classList.remove("fadeIn");
+                    item.classList.add("fadeOut");
+                    setTimeout(() => {
+                        item.style.display = "none";
+                        item.classList.remove("fadeOut");
+                    }, 1000); 
+                }
             });
         });
-        calcBtn.addEventListener('click', () => {
-            calc.style.display = "none";
-            calcProfile.classList.add("fadeIn");
-            calcProfile.style.display = "block";
-        });
-
-        calcProfileBtn.addEventListener('click', () => {
-            calcProfile.style.display = "none";
-            calcEnd.classList.add("fadeIn");
-            calcEnd.style.display = "block";
-        });
-
-        let calcModal = [calc, calcProfile, calcEnd];
-
-        calcModal.forEach((item) => {
-            item.classList.add("animated");
-        });
-
-        btnCalcClose.forEach((item) => {
-            item.addEventListener('click', () =>{
-                calcModal.forEach((item) => {
-                    if(item.style.display == "block") {
-                        item.classList.remove("fadeIn");
-                        item.classList.add("fadeOut");
-                        setTimeout(() => {
-                            item.style.display = "none";
-                            item.classList.remove("fadeOut");
-                        }, 1000); 
-                    }
-                });
-            });
-        });
+    });
     
+    // let typeIcon = typeWindow.querySelectorAll("img");
+
+    typeWindow.forEach((item, i) =>{
+        item.addEventListener('click', (event) =>{
+            event.preventDefault();
+            for(let j = 0; j < 4; j++){
+                if(j == i){
+                    document.querySelector(`.type${j + 1}_img`).style.transform = "scale(1.1)";
+                } else {
+                    document.querySelector(`.type${j + 1}_img`).style.transform = "scale(1)";
+                }
+                console.log(document.querySelector(`.type${j + 1}_img`));
+            }
+
+
+            // typeIcon.forEach((item) =>{
+            //     item.style.scale = "1";
+            //     typeIcon[i].style.scale = "1.1";
+            // });
+
+
+
+            bigImgType.forEach((item) => {
+                item.style.display = "none";
+            });
+            bigImgType[i].style.display = "inline-block";
+
+
+        });
+    });
 
 
 
