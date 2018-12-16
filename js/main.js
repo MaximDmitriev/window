@@ -167,8 +167,6 @@ window.addEventListener('DOMContentLoaded', () => {
                         document.querySelector(".popup_calc_profile_close")],
         typeWindow = calc.querySelectorAll("a"),
         bigImgType = document.querySelectorAll(".big_img>img");
-    
-    // console.log(bigImgType);
 
 
     btnCalc.forEach((item) => {
@@ -210,27 +208,33 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // let typeIcon = typeWindow.querySelectorAll("img");
+    document.querySelector(".type1_img").style.transform = "scale(1.1)";
+
+    let typeFrame = 1,
+        frameHeight = document.getElementById("height"),
+        frameWidth = document.getElementById("width"),
+        viewType = document.getElementById("view_type"),
+        warmType = document.getElementById("warm").previousElementSibling,
+        coldType = document.getElementById("cold").previousElementSibling,
+        btnCalcFin = document.getElementById("btnCalcFin"),
+        calcName = document.getElementById("calcName"),
+        calcPhone = document.getElementById("calcPhone");
+
+    // console.log(warmType);
 
     typeWindow.forEach((item, i) =>{
+        
         item.addEventListener('click', (event) =>{
             event.preventDefault();
             for(let j = 0; j < 4; j++){
                 if(j == i){
                     document.querySelector(`.type${j + 1}_img`).style.transform = "scale(1.1)";
+                    typeFrame = j + 1;
+                    console.log(typeFrame);
                 } else {
                     document.querySelector(`.type${j + 1}_img`).style.transform = "scale(1)";
                 }
-                console.log(document.querySelector(`.type${j + 1}_img`));
             }
-
-
-            // typeIcon.forEach((item) =>{
-            //     item.style.scale = "1";
-            //     typeIcon[i].style.scale = "1.1";
-            // });
-
-
 
             bigImgType.forEach((item) => {
                 item.style.display = "none";
@@ -241,6 +245,68 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    let frameParams = {
+        type: "",
+        width: "",
+        height: "",
+        warmtype: "",
+        viewtype: "",
+        name: "",
+        phone: ""
+
+    }
+    function checkNum(input){
+        input.addEventListener('keypress', (event) => {
+            if(/\D/.test(event.key)){
+                event.preventDefault();
+            }
+        });
+    }
+    checkNum(frameWidth);
+    checkNum(frameHeight);
+
+    warmType.addEventListener('click', (event) => {
+        if(coldType.checked) {
+            event.preventDefault();
+        } else {
+            frameParams.warmtype = "warm";
+        }
+    });
+
+    coldType.addEventListener('click', (event) => {
+        if(warmType.checked) {
+            event.preventDefault();
+        } else {
+            frameParams.warmtype = "cold"; 
+        }
+    });
+
+    btnCalcFin.addEventListener('click', (event) =>{
+        event.preventDefault();
+        frameParams.type = typeFrame;
+        frameParams.width = frameWidth.value;
+        frameParams.height = frameHeight.value;
+        frameParams.viewtype = viewType.value;
+        frameParams.name = calcName.value;
+        frameParams.phone = calcPhone.value;
+
+        if(warmType.checked === false && coldType.checked === false){
+            console.log("error");
+        } else {
+            for (let item in frameParams){
+                if(frameParams.item == ""){
+                    console.log("error");
+                    break;
+                }
+            }
+            console.log(frameParams);
+        }
+        
 
 
+    });
+
+    /// остановился здесь
+
+ 
 });
