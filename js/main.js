@@ -290,12 +290,57 @@ window.addEventListener('DOMContentLoaded', () => {
         frameParams.name = calcName.value;
         frameParams.phone = calcPhone.value;
 
+    function reminder(id){
+        id.classList.add("animated");
+        setTimeout(() => {
+            id.style.borderColor = "red";
+            id.classList.add("pulse"); 
+        }, 1300);
+        id.classList.remove("pulse");
+        setTimeout(() =>{
+            id.style.borderColor = "#ccc";
+        }, 2500);
+    }
+
         if(warmType.checked === false && coldType.checked === false){
-            console.log("error");
+
+            calcEnd.style.display = "none";
+            calcProfile.classList.add("fadeIn");
+            calcProfile.style.display = "block"; 
+
+            reminder(document.getElementById("cold"));
+            reminder(document.getElementById("warm"));
+
+
+            
         } else {
             for (let item in frameParams){
-                if(frameParams.item == ""){
-                    console.log("error");
+                if(frameParams[item] == ""){
+                    console.log(frameParams[item]);
+                    console.log(item);
+                    switch (item){
+                        case "width":
+                            calcEnd.style.display = "none";
+                            calc.classList.add("fadeIn");
+                            calc.style.display = "block";
+                            reminder(frameWidth) ;
+                            break;
+
+                        case "height":
+                            calcEnd.style.display = "none";
+                            calc.classList.add("fadeIn");
+                            calc.style.display = "block";
+                            reminder(frameHeight) ;
+                            break;
+
+                        case "name":
+                            reminder(calcName) ;
+                            break;
+
+                        case "phone":
+                            reminder(calcPhone) ;
+                            break;
+                    }
                     break;
                 }
             }
