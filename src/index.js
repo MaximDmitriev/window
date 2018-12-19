@@ -14,4 +14,5 @@ window.addEventListener('DOMContentLoaded', () => {
     works();
     tabs();
     modals();
+
 });

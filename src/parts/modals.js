@@ -51,7 +51,9 @@ function modals(){
     });
 
     setTimeout(() =>{
-        showModal(popupModal);
+        if(popupModal.style.display == "none" || popupEngineer.style.display == "none") {
+            showModal(popupModal);
+        }    
     }, 60000);
 }
 

@@ -1,5 +1,5 @@
 function calc(){
-        // calc
+
         let btnCalc = document.querySelectorAll(".glazing_price_btn"),
         calcBtn = document.querySelector(".popup_calc_button"),
         calcProfileBtn = document.querySelector(".popup_calc_profile_button"),
@@ -64,7 +64,6 @@ function calc(){
         calcName = document.getElementById("calcName"),
         calcPhone = document.getElementById("calcPhone");
 
-    // console.log(warmType);
 
     typeWindow.forEach((item, i) =>{
         
@@ -114,6 +113,7 @@ function calc(){
             event.preventDefault();
         } else {
             frameParams.warmtype = "warm";
+            console.log(frameParams.warmtype);
         }
     });
 
@@ -122,6 +122,7 @@ function calc(){
             event.preventDefault();
         } else {
             frameParams.warmtype = "cold"; 
+            console.log(frameParams.warmtype);
         }
     });
 
@@ -134,18 +135,18 @@ function calc(){
         frameParams.name = calcName.value;
         frameParams.phone = calcPhone.value;
 
-    function reminder(id){
-        id.classList.add("animated");
-        setTimeout(() => {
-            id.style.borderColor = "red";
-            id.classList.add("pulse"); 
-        }, 1300);
-        id.classList.remove("pulse");
-        setTimeout(() =>{
-            id.style.borderColor = "#ccc";
-        }, 2500);
-    }
-
+        function reminder(id){
+            id.classList.add("animated");
+            setTimeout(() => {
+                id.style.borderColor = "red";
+                id.classList.add("pulse"); 
+            }, 1300);
+            id.classList.remove("pulse");
+            setTimeout(() =>{
+                id.style.borderColor = "#ccc";
+            }, 2500);
+        }
+        check:
         if(warmType.checked === false && coldType.checked === false){
 
             calcEnd.style.display = "none";
@@ -168,32 +169,84 @@ function calc(){
                             calc.classList.add("fadeIn");
                             calc.style.display = "block";
                             reminder(frameWidth) ;
-                            break;
+                            break check;
 
                         case "height":
                             calcEnd.style.display = "none";
                             calc.classList.add("fadeIn");
                             calc.style.display = "block";
                             reminder(frameHeight) ;
-                            break;
+                            break check;
 
                         case "name":
                             reminder(calcName) ;
-                            break;
+                            break check;
 
                         case "phone":
                             reminder(calcPhone) ;
-                            break;
+                            break check;
                     }
-                    break;
                 }
             }
-            console.log(frameParams);
+            sendData(frameParams);
         }
+    });
+    
+    function sendData(data){
+
+    data = JSON.stringify(data);
+        
+    let info = calcEnd.getElementsByTagName("h2"),
+        message = {
+            std: "Спасибо за обращение! <br>Оставьте свои данные",
+            load: "Отправка",
+            success: "Данные отправлены! <br>Мы Вам перезвоним!",
+            error: "Ошибка сервера <br>Попробуйте еще раз"
+        };
         
 
+    let request = new XMLHttpRequest();
+    request.open("POST", "../server.php");
+    request.send(data);
 
+    request.addEventListener('readystatechange', () =>{
+        if(request.status == 200 && request.readyState != 4){
+            info[0].innerHTML = message.load;
+            info[0].style.color = "yellow";
+        }
+        else if(request.status == 200 && request.readyState == 4){
+            info[0].innerHTML = message.success;
+            info[0].style.color = "green";
+
+            for(let item in frameParams){
+                frameParams[item] = "";
+            }
+
+            for(let item in calcModal){
+                let inputs = calcModal[item].querySelectorAll("input");
+                inputs.forEach((item) => {
+                    item.value = "";
+                });
+
+                warmType.checked = false;
+                coldType.checked = false;
+            }
+            console.log(frameParams);
+            setTimeout(() => {
+                calcEnd.style.display = "none";
+                info[0].style.color = "black";
+                info[0].innerHTML = message.std;
+            }, 3000);
+
+
+        } else{
+            info[0].innerHTML = message.error;
+            info[0].style.color = "red";
+        }
     });
+}
+
+
 }
 
 module.exports = calc;
