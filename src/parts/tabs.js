@@ -4,6 +4,15 @@ function tabs(){
         glazingLink = glazing.querySelectorAll("a"),
         glazingTabContent = glazing.querySelectorAll(".row");
 
+    function addClasses(selector){
+        selector.forEach((item) => {
+            item.classList.add("animated");
+            item.classList.add("fadeIn");
+        });
+    }
+
+
+
     function hideGlazing(count){
         for(let i = count; i < glazingTabContent.length; i++){
             glazingTabContent[i].style.display = "none";
@@ -51,6 +60,9 @@ function tabs(){
             showDecoration(i);
         });
     });
+
+    addClasses(glazingTabContent);
+    addClasses(decorationTabContent);
 }
 
 module.exports = tabs;

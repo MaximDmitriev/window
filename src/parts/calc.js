@@ -1,6 +1,6 @@
 function calc(){
 
-        let btnCalc = document.querySelectorAll(".glazing_price_btn"),
+    let btnCalc = document.querySelectorAll(".glazing_price_btn"),
         calcBtn = document.querySelector(".popup_calc_button"),
         calcProfileBtn = document.querySelector(".popup_calc_profile_button"),
         calc = document.querySelector(".popup_calc"),
@@ -33,9 +33,7 @@ function calc(){
 
     let calcModal = [calc, calcProfile, calcEnd];
 
-    calcModal.forEach((item) => {
-        item.classList.add("animated");
-    });
+    calcModal.forEach((item) => item.classList.add("animated"));
 
     btnCalcClose.forEach((item) => {
         item.addEventListener('click', () =>{
@@ -73,18 +71,13 @@ function calc(){
                 if(j == i){
                     document.querySelector(`.type${j + 1}_img`).style.transform = "scale(1.1)";
                     typeFrame = j + 1;
-                    console.log(typeFrame);
                 } else {
                     document.querySelector(`.type${j + 1}_img`).style.transform = "scale(1)";
                 }
             }
 
-            bigImgType.forEach((item) => {
-                item.style.display = "none";
-            });
+            bigImgType.forEach((item) => item.style.display = "none");
             bigImgType[i].style.display = "inline-block";
-
-
         });
     });
 
@@ -100,30 +93,24 @@ function calc(){
     }
     function checkNum(input){
         input.addEventListener('keypress', (event) => {
-            if(/\D/.test(event.key)){
-                event.preventDefault();
-            }
+            if(/\D/.test(event.key)) event.preventDefault();
         });
     }
+
     checkNum(frameWidth);
     checkNum(frameHeight);
 
     warmType.addEventListener('click', (event) => {
-        if(coldType.checked) {
-            event.preventDefault();
-        } else {
-            frameParams.warmtype = "warm";
-            console.log(frameParams.warmtype);
-        }
+        if(coldType.checked)  event.preventDefault();
+        else frameParams.warmtype = "warm";
     });
 
     coldType.addEventListener('click', (event) => {
-        if(warmType.checked) {
-            event.preventDefault();
-        } else {
-            frameParams.warmtype = "cold"; 
-            console.log(frameParams.warmtype);
-        }
+        // if(warmType.checked) {
+        //     event.preventDefault();
+        if(warmType.checked) event.preventDefault();
+        else  frameParams.warmtype = "cold"; 
+        
     });
 
     btnCalcFin.addEventListener('click', (event) =>{
@@ -155,14 +142,10 @@ function calc(){
 
             reminder(document.getElementById("cold"));
             reminder(document.getElementById("warm"));
-
-
-            
+       
         } else {
             for (let item in frameParams){
                 if(frameParams[item] == ""){
-                    console.log(frameParams[item]);
-                    console.log(item);
                     switch (item){
                         case "width":
                             calcEnd.style.display = "none";
@@ -224,14 +207,11 @@ function calc(){
 
             for(let item in calcModal){
                 let inputs = calcModal[item].querySelectorAll("input");
-                inputs.forEach((item) => {
-                    item.value = "";
-                });
+                inputs.forEach((item) => item.value = "");
 
                 warmType.checked = false;
                 coldType.checked = false;
             }
-            console.log(frameParams);
             setTimeout(() => {
                 calcEnd.style.display = "none";
                 info[0].style.color = "black";
