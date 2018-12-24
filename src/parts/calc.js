@@ -12,11 +12,13 @@ function calc(){
         typeWindow = calc.querySelectorAll("a"),
         bigImgType = document.querySelectorAll(".big_img>img");
 
+    let  show = true;
 
     btnCalc.forEach((item) => {
         item.addEventListener('click', () => {
             calc.classList.add("fadeIn");
             calc.style.display = "block";
+            show = false;
         });
     });
     calcBtn.addEventListener('click', () => {
@@ -63,6 +65,8 @@ function calc(){
         calcPhone = document.getElementById("calcPhone");
 
 
+
+
     typeWindow.forEach((item, i) =>{
         
         item.addEventListener('click', (event) =>{
@@ -106,11 +110,8 @@ function calc(){
     });
 
     coldType.addEventListener('click', (event) => {
-        // if(warmType.checked) {
-        //     event.preventDefault();
         if(warmType.checked) event.preventDefault();
-        else  frameParams.warmtype = "cold"; 
-        
+        else  frameParams.warmtype = "cold";       
     });
 
     btnCalcFin.addEventListener('click', (event) =>{
@@ -226,7 +227,7 @@ function calc(){
     });
 }
 
-
+module.exports = show;
 }
 
 module.exports = calc;

@@ -6,11 +6,9 @@ function modals(){
         popupModal = document.querySelector(".popup"),
         closePopupModal = popupModal.querySelector("strong"),
         closeEngineer = popupEngineer.querySelector("strong"),
-        forms = document.querySelectorAll(".form"),
-        show = true;
+        forms = document.querySelectorAll(".form");
 
-
-
+    let show = require('./calc');
     let mask = require('./mask');
 
     forms.forEach((item) => {
@@ -96,7 +94,7 @@ function modals(){
                 let inputs = form.querySelectorAll("input");
                 inputs.forEach((item) => item.value = "");
                 mask(inputs[1]);                //для очистки массива
-                
+
                 setTimeout(() => {
                     hideModal(popupModal);
                     hideModal(popupEngineer);
