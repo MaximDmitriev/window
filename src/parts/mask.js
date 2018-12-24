@@ -1,6 +1,6 @@
 function mask(input) {
 
-    input.focus();
+    // input.focus();
     input.selectionStart = input.value.length;
 
     let numbers = [];
