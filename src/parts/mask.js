@@ -1,10 +1,7 @@
-function mask() {
-    let mask = document.querySelector("#mask");
+function mask(input) {
 
-    // mask.style.backgroundColor = "red";
-
-    mask.focus();
-    mask.selectionStart= mask.value.length;
+    input.focus();
+    input.selectionStart = input.value.length;
 
     let numbers = [];
 
@@ -26,15 +23,15 @@ function mask() {
         }
     }
 
-    mask.addEventListener('keydown', (event) => {
+    input.addEventListener('keydown', (event) => {
         if (event.keyCode == 8 && numbers.length != 0) {
             event.preventDefault();
             numbers.pop();
-            writeToInput(mask, numbers);
+            writeToInput(input, numbers);
         } 
     });
 
-    mask.addEventListener('keypress', (event) => {
+    input.addEventListener('keypress', (event) => {
 
         if (/\D/g.test(event.key)) event.preventDefault();
         else {
@@ -42,7 +39,7 @@ function mask() {
             else {
                 event.preventDefault();
                 numbers.push(event.key);
-                writeToInput(mask, numbers);
+                writeToInput(input, numbers);
             }
         }
     });

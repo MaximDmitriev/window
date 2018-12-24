@@ -7,8 +7,8 @@ window.addEventListener('DOMContentLoaded', () => {
         works = require('./parts/works'),
         tabs = require('./parts/tabs'),
         modals = require('./parts/modals'),
-        timer = require('./parts/timer'),
-        mask = require('./parts/mask');
+        timer = require('./parts/timer');
+ 
 
  
 
@@ -17,6 +17,6 @@ window.addEventListener('DOMContentLoaded', () => {
     tabs();
     modals();
     timer();
-    mask();
+
 
 });

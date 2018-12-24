@@ -9,7 +9,15 @@ function modals(){
         forms = document.querySelectorAll(".form"),
         show = true;
 
-    
+
+
+    let mask = require('./mask');
+
+    forms.forEach((item) => {
+        let name = item.querySelector("input[name=user_phone]");
+        mask(name);
+    });
+
     popupEngineer.classList.add("animated");
     popupModal.classList.add("animated");
 
@@ -87,7 +95,8 @@ function modals(){
     
                 let inputs = form.querySelectorAll("input");
                 inputs.forEach((item) => item.value = "");
-    
+                mask(inputs[1]);                //для очистки массива
+                
                 setTimeout(() => {
                     hideModal(popupModal);
                     hideModal(popupEngineer);
